@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>模块化</title>
+  </head>
+  <body>
+    <script src="./././"></script>
+    <script>
+      /*
+            例子:
+            const a = 'xxx' 
+            export default a // 默认导出
+            export const b = 1 // 命名导出
+            
+            
+            export: 
+              1. 导出决定一个模块中有哪些内容可以被外部查看
+              2. 导出分为两种
+                - 默认导出
+                  export default xxx
+                  一个模块中只能有一个默认导出
+                - 命名导出
+                  export const b = 1 // 命名导出
+                  export {obj,b,c,d}
+                
+            import:
+              1. 导入外部模块中到当前模块
+                import a from 'xxx'
+                默认情况下script标签不能使用import语句,如果想让其支持模块化,必须设置script标签的type=module
+                导入默认模块的时候,不需要跟模块名相同: 例如: import b from 'xxx'
+                在网页导入的时候,模块的路径必须写完整(./或者../开头,扩展名也得写上)
+              2. 导入指定内容
+                  import {b} from 'xxx'   import {b as str} from 'xxx'
+                
+        */
+    </script>
+  </body>
+</html>

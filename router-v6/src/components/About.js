@@ -1,0 +1,39 @@
+import React from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
+
+const About = () => {
+    return (
+        <div>
+
+            {/* 
+                Navigate： 用来跳转到指定的位置
+                    默认使用push跳转
+            */}
+            <Navigate to="/student/1"  replace />
+
+            <h2>关于页面</h2>
+            <ul>
+                <li>张三</li>
+                <li>李四</li>
+                <li>王五</li>
+                <li>赵六</li>
+            </ul>
+
+            {/* 通过子路由来对hello组建进行映射 /about/hello */}
+            {/* <Hello /> */}
+
+            {/* <Routes>
+                <Route path={"hello"} element={<Hello/>} />
+            </Routes> */}
+
+            {/* 
+                Outlet:表示嵌套路由中的组件
+                    当嵌套路由中的组件匹配成功了，Outlet则表示嵌套路由中的组件
+                    当嵌套路由中的组件没有匹配成功，Outlet则什么都不是
+            */}
+            <Outlet />
+        </div>
+    )
+}
+
+export default About

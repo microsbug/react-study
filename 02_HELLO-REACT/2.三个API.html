@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>三个API</title>
+    <!-- 引入react核心库 -->
+    <script
+      type="text/javascript"
+      src="./js//react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="./js/react-dom.development.js"></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script
+      type="text/javascript"
+      src="./js/babel.min.js"></script>
+  </head>
+  <body>
+    <button id="btn">更新数据</button>
+    <div id="root"></div>
+
+    <script>
+      /*
+        React.createElement()
+          - 用来创建一个react元素
+          - 参数:
+            1. 元素的名称(html标签必须小写,大写会被认为是react组件)
+            2. 标签中的属性
+                - 在设置时间的时候,属性名需要使用驼峰命名法
+                - class属性需要使用className来设置
+            3. 元素的内容(子元素)
+          - 注意点:
+              React元素最终会通过虚拟DOM转换为真实DOM元素
+              React元素一旦创建就无法修改,只能通过新创建的元素进行替换
+      */
+
+      // 创建一个react元素
+      const button = React.createElement(
+        'button',
+        {
+          type: 'button',
+          className: 'hello',
+          onClick: () => {
+            alert('你点我干嘛')
+          }
+        },
+        '点我一下'
+      )
+
+      // 创建一个div
+      const div = React.createElement('div', {}, '我是一个div', button)
+
+      // 获取根元素
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+
+      // 将元素在根元素上显示
+      root.render(div)
+
+      // 获取按钮对象
+      const btn = document.getElementById('btn')
+      btn.addEventListener('click', () => {
+        // 点击按钮后,修改div中将button文字为 click me
+        const button = React.createElement(
+          'button',
+          {
+            id: 'btn',
+            type: 'button',
+            className: 'hello',
+            onClick: () => {
+              alert('你点我干嘛')
+            }
+          },
+          'click me'
+        )
+
+        // 创建一个div
+        const div = React.createElement('div', {}, '我是一个div', button)
+
+        // 当调用render渲染页面的时候, React会比对两次渲染的元素,只在真是DOM中发生变化的部分,没发生变化的保持不变
+
+        // 修改react元素后,必须重新对根节点进行渲染
+        root.render(div)
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>JSX</title>
+    <!-- 引入react核心库 -->
+    <script
+      type="text/javascript"
+      src="./js//react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="./js/react-dom.development.js"></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script
+      type="text/javascript"
+      src="./js/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 设置js代码被babel编译 -->
+    <script type="text/babel">
+      // 创建一个React元素 <button>我是一个按钮</button>
+      // 命令式编程
+      // const button = React.createElement('button', { onClick: () => alert('点击了') }, '我是一个按钮')
+      // const button = React.createElement('button', { onClick: () => alert('点击了') }, '我是一个按钮')
+
+      // 声明式编程,结果导向的编程
+      // 在React中可以使用jsx语法糖来创建一个React元素
+      // 要在React中使用JSX,必须引入babel
+      /**
+       * JSX就是React.createElement()的一种语法糖，它本质上还是JS代码，只是用JSX语法糖来书写
+       * JSX在执行之前会被babel编译为js代码
+       * JSX语法糖：在JSX中，可以使用HTML标签和属性，也可以使用JS代码
+       */
+      const div = (
+        <div>
+          我是一个div
+          <button onClick={() => alert('点击了')}>我是一个按钮</button>
+        </div>
+      )
+      const root = ReactDOM.render(div, document.getElementById('root')) // React.createElement('button', {}, '我是一个按钮')
+      root.render(div)
+    </script>
+  </body>
+</html>

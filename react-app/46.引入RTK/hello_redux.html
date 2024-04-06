@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Redux</title>
+    </head>
+    <body>
+        <script src="https://unpkg.com/redux@4.2.0/dist/redux.js"></script>
+
+        <button id="sub">减少</button>
+        <span id="countSpan">1</span>
+        <span id="nameSpan"></span>
+        <button id="add">增加</button>
+        <button id="addFive">+5</button>
+
+        <script>
+            const nameSpan = document.getElementById("nameSpan")
+            /**
+             * 在网页中使用Redux的步骤：
+             * 		1.导入redux核心包
+             * 		2.创建reducer整合函数
+             * 		3.通过reducer对象创建store
+             * 		4.对store中的state进行订阅
+             * 		5.通过dispatch派发state的操作指令
+             */
+
+            function reducer(state = { count: 1, name: "张三" }, action) {
+                /**
+                 * state 表示当前的state，可以根据这个state生成最新的state
+                 * action 是一个js对象，它里面会保存操作的信息
+                 * 		action.type 表示当前的操作类型
+                 * 		其他需要传递的参数，也可以在action中传递
+                 *
+                 * 问题：
+                 *  1.如果state非常复杂，将会非常难以维护
+                 *      - 可以对state进行分组来解决这个问题，创建多个reducer然后将其合并为一个
+                 *  2.state每次操作时，都要对state进行复制，然后再去修改
+                 *  3.case后面的常量维护起来比较麻烦
+                 * */
+                switch (action.type) {
+                    case "ADD":
+                        return { ...state, count: state.count + 1 }
+                    case "SUB":
+                        return { ...state, count: state.count - 1 }
+                    case "ADD_N":
+                        return { ...state, count: state.count + action.payload }
+                    default:
+                        return state
+                }
+            }
+
+            const store = Redux.createStore(reducer)
+
+            nameSpan.innerText = store.getState().name
+
+            store.subscribe(() => {
+                // 打印store中的state
+                // console.log(store.getState())
+                countSpan.innerText = store.getState().count
+                nameSpan.innerText = store.getState().name
+            })
+
+            const subBtn = document.getElementById("sub")
+            const addBtn = document.getElementById("add")
+            const addFiveBtn = document.getElementById("addFive")
+            const countSpan = document.getElementById("countSpan")
+
+            subBtn.addEventListener("click", () => {
+                store.dispatch({ type: "SUB" })
+            })
+
+            addBtn.addEventListener("click", () => {
+                store.dispatch({ type: "ADD" })
+            })
+
+            addFiveBtn.addEventListener("click", () => {
+                store.dispatch({ type: "ADD_N", payload: 5 })
+            })
+        </script>
+    </body>
+</html>

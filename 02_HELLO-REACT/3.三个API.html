@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>三个API</title>
+    <!-- 引入react核心库 -->
+    <script
+      type="text/javascript"
+      src="./js//react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="./js/react-dom.development.js"></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script
+      type="text/javascript"
+      src="./js/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      /*
+        React.createElement()
+          - 用来创建一个react元素
+          - 参数:
+            1. 元素的名称(html标签必须小写,大写会被认为是react组件)
+            2. 标签中的属性
+                - 在设置时间的时候,属性名需要使用驼峰命名法
+                - class属性需要使用className来设置
+            3. 元素的内容(子元素)
+          - 注意点:
+              React元素最终会通过虚拟DOM转换为真实DOM元素
+              React元素一旦创建就无法修改,只能通过新创建的元素进行替换
+      */
+
+      // 创建一个react元素
+      const button = React.createElement(
+        'button',
+        {
+          type: 'button',
+          className: 'hello',
+          onClick: () => {
+            alert('你点我干嘛')
+          }
+        },
+        '点我一下'
+      )
+
+      // 创建一个div
+      const div = React.createElement('div', {}, '我是一个div2', button)
+
+      // ReactDOM.render(div, document.getElementById('root')) // 这是老版本的React使用方法
+
+      // 获取根元素 根元素就是React元素要插入的位置
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+
+      // 将元素在根元素上显示
+      /**
+       * root.render()
+       *  - 用来将react元素渲染到页面上
+       *  - 根元素中所有的内容都会被删除, 被React元素替换
+       *  - 当重复调用render()时,React会将两次的渲染结果进行比对, 它会确保只修改那些发生变化的元素,对DOM进行最小的修改
+       *  - 注意点:
+       *      1. 一个页面中只能有一个根元素
+       *      2. 一个页面中只能有一个root元素
+       */
+      root.render(div)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+.Meal {
+  /* 开启弹性盒 */
+  display: flex;
+  /* 设置副轴的对齐方式 */
+  align-items: center;
+  /* 设置外边距 */
+  padding: 30rem 20rem;
+  border-bottom: 1px #f2f2f2 solid;
+}
+
+.ImgBox {
+  width: 280rem;
+}
+
+img {
+  width: 100%;
+}
+
+.Title {
+  font-weight: normal;
+  font-size: 18px;
+  margin: 0;
+}
+
+.Desc {
+  margin: 0;
+  font-size: 12px;
+  color: #bbb;
+  padding-right: 40rem;
+}
+
+.PriceWrapper {
+  display: flex;
+  margin-top: 40rem;
+  padding-right: 40rem;
+  justify-content: space-between;
+}
+
+.Price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Price::before {
+  content: "￥";
+  font-size: 12px;
+}

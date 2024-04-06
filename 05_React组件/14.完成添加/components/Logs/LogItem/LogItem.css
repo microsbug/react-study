@@ -1,0 +1,8 @@
+/* 设置item的样式 */
+.item {
+    /* 开启弹性盒 */
+    display: flex;
+    margin: 16px 0;
+    background-color: #fcbf49;
+    border-radius: 10px;
+}

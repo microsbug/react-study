@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.e1bbadba.css","mappings":"AAAA,iBAEI,YAAa,CACb,oBACJ,CAEA,6BAEI,SAAU,CACV,yBACJ","sources":["components/Menu.module.css"],"sourcesContent":["a:link,\r\na:visited{\r\n    color: orange;\r\n    text-decoration: none;\r\n}\r\n\r\na:hover,\r\na.active{\r\n    color: red;\r\n    text-decoration: underline;\r\n}\r\n\r\n"],"names":[],"sourceRoot":""}

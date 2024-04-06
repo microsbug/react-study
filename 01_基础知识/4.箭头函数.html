@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>箭头函数</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 箭头函数
+       *  - 只有一个参数的函数
+       *      参数 => 返回值
+       *  - 如果没有参数,或多个参数,参数需要使用()
+       *      () => 返回值
+       *  - 箭头函数后面的值就是函数的返回值
+       *      返回值必须是一个表达式(又返回值的表达式)
+       *      如果返回值是对象必须加()
+       *  - 如果在箭头函数中定义逻辑,可以直接在剪头后跟一个代码块
+       *      代码块中语法与普通函数没有区别
+       * */
+      const fun1 = function (a) {
+        return a + 'a'
+      }
+
+      const fun2 = a => 'a'
+
+      const sum = (a, b) => a + b
+      let result = sum(111, 222)
+      console.log(result)
+
+      // const user = (a,b) => ({name: 'zd'})
+      const user = (a, b) => console.log(123)
+
+      const fun3 = (a, b) => {
+        if (true) {
+          a + b
+        } else {
+          b - a
+        }
+      }
+
+      // ---------------------------------------
+      /*
+				特点:
+						1. 箭头函数中没有arguments
+						2. 剪头函数中没有this
+							- 它的this总是外层作用域的this
+						3. 箭头函数中的this无法通过call,apply,bind修改
+						4. 箭头函数无法通作为构造函数使用
+			*/
+      function fn(a, b, ...args) {
+        // arguments:用来保存函数的实参
+        console.log(arguments.length)
+        console.log(args)
+      }
+      fn()
+
+      const fn1 = () => console.log(arguments)
+      fn1()
+
+      const fn2 = () => {
+        console.log(this)
+      }
+      fn2() // 这里外层的全局作用域是window,所以这里this是window
+
+      const obj = {
+        hello: () => {
+          console.log(this)
+        }
+      }
+      obj.hello() // 这里外层是window
+    </script>
+  </body>
+</html>

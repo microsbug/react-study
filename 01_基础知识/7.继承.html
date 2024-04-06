@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>继承</title>
+  </head>
+  <body>
+    <script>
+      class Dog extends Animal {
+        // 当我们在子类中重写了父类中的构造函数,必须第一时间调用父类,否则报错
+        constructor(name, age, length) {
+          super(name, age)
+          this.length = length
+        }
+        sayHello = () => {
+          console.log('汪汪汪')
+        }
+      }
+
+      class Animal {
+        constructor(name, age) {
+          this.name = name
+          this.age = age
+        }
+        sayHello = () => {
+          console.log('哎呦喂')
+        }
+      }
+    </script>
+  </body>
+</html>

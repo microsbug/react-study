@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>类</title>
+  </head>
+  <body>
+    <script>
+      /*
+              类:
+                1. 类是对象的模版
+                2. 类决定了一个对象中有哪些属性和方法
+                3. 使用class来定义一个类
+            */
+
+      /**
+       * 类中的代码都会在严格模式下执行
+       *    严格模式下这里有一个特点: 函数的this不在是window
+       * class中默认开启严格模式
+       *
+       * 注意:
+       *    这里以方式形式调用,this就是当前示例
+       *    如果以函数形式调用,this就是undefined
+       *
+       *  在开发情况下:在有些场景中,我们希望方法中的this是固定的,不会因为方法的调用方式不同而改变
+       *    如果遇到这种情况,使用箭头函数来定义类中的方法
+       *    如果类中的方法是使用箭头函数定义的,则方法中的this恒为当前实例,不会改变
+       *    推荐:在类中定义方法,都是用箭头函数
+       */
+
+      class Person {
+        name = '张三'
+        age = 18
+        // 当我们new Person的时候其实就是调用它
+        constructor(name, age) {
+          // 将参数赋值给对象中的属性
+          // 在构造函数中,可以通过this来引用当前对象
+          this.name = name
+          this.age = age
+        }
+        // constructor(...args) {
+        //     console.log(args)
+        // }
+        run() {
+          console.log(跑起来)
+        }
+      }
+
+      const per = new Person()
+      per.run()
+      console.log(per)
+
+      // 如果开启严格模式
+      const fn = function () {
+        console.log(this) // 这里this 是undefined
+      }
+
+      // --------------
+      class MyClass {
+        constructor() {
+          this.fn = fn.bind(this) // 这种方式可以,但是不是很好
+        }
+        fn() {
+          console.log(xxx)
+        }
+      }
+    </script>
+  </body>
+</html>

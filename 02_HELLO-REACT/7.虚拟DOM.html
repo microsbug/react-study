@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>虚拟DOM</title>
+    <!-- 引入react核心库 -->
+    <script
+      type="text/javascript"
+      src="./js//react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="./js/react-dom.development.js"></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script
+      type="text/javascript"
+      src="./js/babel.min.js"></script>
+  </head>
+  <body>
+    <button id="btn">更新数据</button>
+    <div id="root"></div>
+    <script type="text/babel">
+      const data = ['张三', '李四', '王五']
+
+      // 创建列表
+      const list = (
+        <ul>
+          {data.map(item => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      )
+
+      // 获取根元素
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+      // 渲染列表
+      root.render(list)
+
+      /**
+       * 在React中我们操作的元素被称为虚拟DOM,并不是真正的原生DOM
+       *    React通过虚拟DOM将React元素与原生DOM,进行映射, 虽然操作的是React元素,但是最终会映射到原生DOM上
+       *    虚拟DOM的好处:
+       *      1.降低API复杂度
+       *      2.解决兼容性问题
+       *      3.提升性能(减少DOM的不必要操作)
+       *
+       *    每当我们调用root.render()时,页面就会发生重新渲染
+       *      React会通过diff算法来计算出虚拟DOM和原生DOM的差异,然后将差异应用到原生DOM上
+       *    虚拟DOM和原生DOM的映射关系,是通过render函数来实现的
+       *    render函数会将虚拟DOM转换为原生DOM,然后将原生DOM插入到页面中
+       */
+      document.getElementById('btn').onclick = () => {
+        const data = ['张三', '李四', '王五']
+
+        // 创建列表
+        const list = (
+          <ul>
+            {data.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        )
+        // 渲染列表
+        root.render(list)
+
+        /**
+         * 比较两次数据时,React会先比较父元素,父元素如果不同,直接所有元素全部替换
+         *    父元素一致,会去逐个比较子元素,知道找到所有发生变化的元素为止
+         * 上例中,新旧两组数据完全一致,所有没有任何DOM对象被修改
+         *
+         * 在JSX中数组的显示, 数组中的每一个元素都需要设置一个唯一的key,否则控制台会报红色警告
+         *    重新渲染页面时,React会按照顺序进行元素比对, 当渲染一个列表时,如果没有指定key,同样也会按照顺序进行比较
+         *    如果列表的顺序永远不会发生变化,这么做当然没有问题, 但是如果列表发生变化,这可能导致性能问题出现
+         *
+         * 为了解决这个问题,可以为数组中的每一个元素设置一个key属性, 该属性的值可以是任意的字符串
+         *    但是最好使用唯一且不变的字符串, 例如: 数据中的id, 或者数据中的索引
+         *    但是,如果数据中的id是可变的,那么key的值最好也设置为id, 保证key的唯一性
+         *      注意:
+         *        1. 开发中推荐采用id作为key
+         *        2. 尽量不要使用index作为key
+         *          索引会跟着元素顺序的改变而改变, 所以使用索引作key跟没有key是一样的
+         *            唯一的不同就是,控制台的警告没了!
+         *
+         *          当元素的顺序不会发生变化的时候,用索引作为key也是没有问题的!
+         */
+      }
+    </script>
+  </body>
+</html>

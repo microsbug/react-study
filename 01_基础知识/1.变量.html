@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>变量</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * var(不推荐❌)
+       *    - 没有块级作用域
+       *
+       * let(如果要修改推荐✅)
+       *    - 块级作用域
+       * const(优先使用,强烈推荐✅)
+       *    - 和let类似,具有块级作用域,但是他只能赋值一次
+       *    - 使用场景:
+       *          1. 对于一些常量可以使用const声明
+       *          2. 对于一些对象(函数)也可以使用const声明
+       *              这样可以避免对象(函数)被意外修改
+       */
+      {
+        var a = 10
+        // let a = 10
+      }
+
+      console.log(a)
+
+      for (let index = 0; index < 5; index++) {
+        console.log('循环内部 ->', index)
+      }
+      // console.log('循环外部 ->', index)
+
+      // 使用函数作用域解决var变量问题
+      ;(function () {
+        if (true) {
+          var a = 10
+        }
+      })()
+
+      const c = 10
+
+      // c = 100
+      console.log(c)
+
+      const PI = 3.14
+
+      const obj = { name: '张三' }
+      obj = { name: '李四' }
+      console.log(obj.name)
+    </script>
+  </body>
+</html>

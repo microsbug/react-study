@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>渲染列表</title>
+    <!-- 引入react核心库 -->
+    <script
+      type="text/javascript"
+      src="./js//react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="./js/react-dom.development.js"></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script
+      type="text/javascript"
+      src="./js/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 设置js代码被babel编译 -->
+    <script type="text/babel">
+      const name = '张三'
+      const lang = 'cn'
+      /**
+       * {} 里面只能放js表达式, 不能放(if for )等
+       *    在语句中可以去操作JSX
+       */
+      let div
+      if (lang === 'en') {
+        div = <div>Hello {name}</div>
+      } else if (lang === 'cn') {
+        div = <div>你好 {name}</div>
+      } else {
+        div = <div>你好 {name}</div>
+      }
+
+      // 将arr渲染为一个列表在页面中进行显示
+      // jsx会自动将数组中的元素进行转换显示
+      const data = ['张三', '李四', '王五']
+      // const arr = []
+      // for (let i = 0; i < data.length; i++) {
+      //   arr.push(<li>{data[i]}</li>)
+      // }
+      // const arr = data.map((item, index) => {
+      //   return <li key={index}>{item}</li>
+      // })
+      // const list = <div>{arr}</div>
+      // const list = <ul>{arr}</ul>
+
+      const list = (
+        <ul>
+          {data.map((item, index) => {
+            return <li key={index}>{item}</li>
+          })}
+        </ul>
+      )
+      const listInline = (
+        <ul>
+          {data.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      )
+
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+      root.render(listInline)
+    </script>
+  </body>
+</html>

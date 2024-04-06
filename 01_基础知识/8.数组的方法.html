@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>数组方法</title>
+  </head>
+  <body>
+    <script>
+      /**
+       *  map()
+       *    - 可以根据原有数组返回一个新数组
+       *    - 需要一个回调函数作为参数,回调函数的返回值会作为新数组中的元素
+       *      参数1: 每一个元素
+       *      参数2: 元素下标
+       *      参数3: 原数组本身
+       *  filter()
+       *    - 可以从一个数组中获取符合条件的元素
+       *    - 会根据回调函数的结果判断是否保留元素,true保留,false不保留
+       *
+       *  find()
+       *     - 可以从数组中找到符合条件的第一个元素
+       *   reduce()
+       *      - 可以用来合并数组中的元素
+       *      - 需要两个参数:
+       *          回调函数(指定运算规则)
+       *            四个参数:
+       *              prev: 上一次运算结果
+       *              curr: 当前值
+       *              index: 当前索引
+       *              array: 当前数组
+       *          初始值
+       *            - 用来指定第一次运算时prev,如果不指定直接从第二个元素开始计算
+       */
+      const arr = [1, 2, 3, 4, 5]
+      // let result = arr.map(() => 10)
+      let result = arr.map((item, index, array) => {
+        return item + 2
+      })
+      console.log(result)
+
+      const arr2 = ['张三', '李四', '王五']
+
+      result = arr2.map(item => '<li>' + item + '</li>')
+
+      const arr3 = [1, 2, 3, 4, 5]
+
+      result = arr3.filter(item => item % 2 === 0)
+      result = arr3.find(item => item % 2 === 0)
+
+      result = arr3.reduce((prev, curr) => {
+        perv + next
+      }, 0) // 这里相当于prev为0
+
+      console.log(result)
+    </script>
+  </body>
+</html>
